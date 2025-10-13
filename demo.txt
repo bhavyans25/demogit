@@ -1,34 +1,92 @@
-For the prequel released later in 2025, see Kantara: Chapter 1.
-Kantara: A Legend
+#include <stdio.h>
+#include <stdlib.h>
+#define SIZE 5   // Maximum size of the stack
 
-Theatrical release poster
-Directed by	Rishab Shetty
-Written by	Rishab Shetty
-Produced by	Vijay Kiragandur
-Chaluve Gowda
-Starring	
-Rishab Shetty
-Sapthami Gowda
-Kishore
-Achyuth Kumar
-Cinematography	Arvind S. Kashyap
-Edited by	
-K. M. Prakash
-Shobith Shetty
-Music by	B. Ajaneesh Loknath
-Production
-company	
-Hombale Films
-Distributed by	Hombale Films
-Release date	
-30 September 2022[1]
-Running time	148 minutes[2]
-Country	India
-Language	Kannada
-Budget	₹16.50 crore[3]
-Box office	₹400−450 crore[a]
-Kantara (transl. Mysterious forest, also known as Kantara: A Legend) is a 2022 Indian Kannada-language action thriller film[19][20] written and directed by Rishab Shetty, and produced by Vijay Kiragandur and Chaluve Gowda under Hombale Films. The film stars Shetty in dual roles, along with Sapthami Gowda, Kishore, and Achyuth Kumar.
+int stack[SIZE];
+int top = -1;
 
-Blending elements of coastal Karnataka folklore, spirit possession rituals, and divine belief systems, the story centres around Bhuta Kola, a traditional form of worship practiced in the region. It follows a Kambala champion who clashes with an upright forest officer, leading to a larger conflict involving sacred land, ancestral legacy, and the balance between nature and man-made law.
+// Function to push an element
+void push(int value) {
+    if (top == SIZE - 1) {
+        printf("\nStack Overflow! Cannot push %d\n", value);
+    } else {
+        top++;
+        stack[top] = value;
+        printf("\n%d pushed to stack\n", value);
+    }
+}
 
-Set and filmed in Keradi in coastal Karnataka, principal photography began in August 2021.[21] The cinematog
+// Function to pop an element
+void pop() {
+    if (top == -1) {
+        printf("\nStack Underflow! Nothing to pop\n");
+    } else {
+        printf("\n%d popped from stack\n", stack[top]);
+        top--;
+    }
+}
+
+// Function to view the top element
+void peek() {
+    if (top == -1) {
+        printf("\nStack is empty\n");
+    } else {
+        printf("\nTop element is %d\n", stack[top]);
+    }
+}
+
+// Function to display the stack elements
+void display() {
+    if (top == -1) {
+        printf("\nStack is empty\n");
+    } else {
+        printf("\nStack elements are:\n");
+        for (int i = top; i >= 0; i--) {
+            printf("%d\n", stack[i]);
+        }
+    }
+}
+
+// Main function
+int main() {
+    int choice, value;
+
+    while (1) {
+        printf("\n\n*** Stack Operations Menu ***\n");
+        printf("1. Push\n");
+        printf("2. Pop\n");
+        printf("3. Peek\n");
+        printf("4. Display\n");
+        printf("5. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter value to push: ");
+                scanf("%d", &value);
+                push(value);
+                break;
+
+            case 2:
+                pop();
+                break;
+
+            case 3:
+                peek();
+                break;
+
+            case 4:
+                display();
+                break;
+
+            case 5:
+                printf("\nExiting program...\n");
+                exit(0);
+
+            default:
+                printf("\nInvalid choice! Please try again.\n");
+        }
+    }
+    return 0;
+}
